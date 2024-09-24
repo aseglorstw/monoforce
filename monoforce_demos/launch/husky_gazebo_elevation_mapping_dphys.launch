@@ -6,12 +6,25 @@
   <arg name="world" default="$(find monoforce_gazebo)/worlds/terrain_vegetation.world"/>
   <arg name="engine" default="torch" doc="Using NVIDIA Warp- or Pytorch-based differentiable physics"/>
   <arg name="device" default="cpu" doc="Device to run the differentiable physics"/>
+  <arg name="robot_x" default="-3.4"/>
+  <arg name="robot_y" default="-13.0"/>
+  <arg name="robot_z" default="2.4"/>
+  <arg name="robot_yaw" default="0.0"/>
+  <arg name="waypoints_list" default="[[3.4, 13.0, 0.2, 0, 0, 0, 1]]"/>
 
   <!-- Gazebo world and spawn Husky robot -->
   <include file="$(find monoforce_gazebo)/launch/husky_sim.launch">
     <arg name="world" value="$(arg world)"/>
     <arg name="gui" value="$(arg gui)"/>
+     <arg name="robot_x" value="$(arg robot_x)"/>
+     <arg name="robot_y" value="$(arg robot_y)"/>
+     <arg name="robot_z" value="$(arg robot_z)"/>
+     <arg name="robot_yaw" value="$(arg robot_yaw)"/>
   </include>
+
+
+  <!-- <include file="$(find trajectory_saver)/launch/trajectory_saver.launch">
+  </include> -->
 
   <!-- Elevation Mapping -->
   <include file="$(find monoforce_navigation)/launch/elevation_mapping.launch">
@@ -38,15 +51,9 @@
     <arg name="input_paths" value="sampled_paths"/>
     <arg name="input_path_costs" value="path_costs"/>
     <arg name="output_path" value="selected_path"/>
-    <arg name="waypoints_list" value="[
-                                       [10, -5, 0, 0, 0, 0, 1],
-                                       [10, 5, 0, 0, 0, 0, 1],
-                                       [0, 5, 0, 0, 0, 0, 1],
-                                       [0, -5, 0, 0, 0, 0, 1],
-                                       [0, 0, 0, 0, 0, 0, 1],
-                                       ]"/>
+    <arg name="waypoints_list" value="$(arg waypoints_list)"/>
     <arg name="waypoint_weight" default="1.0"/>
-    <arg name="path_force_weight" default="1.0"/>
+    <arg name="path_force_weight" default="0.0"/>
     <arg name="map_frame" value="map"/>
   </include>
 

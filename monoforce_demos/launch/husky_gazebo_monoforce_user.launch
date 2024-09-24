@@ -58,7 +58,7 @@
 
     <!-- Path follower -->
     <include file="$(find monoforce_navigation)/launch/path_follower.launch">
-        <arg name="path_to_follow" value="selected_path"/>
+        <arg name="path_to_follow" value="waypoints_route"/>
         <arg name="max_age" value="50.0"/>
         <arg name="map_frame" value="map"/>
         <arg name="keep_path" value="2.0"/>

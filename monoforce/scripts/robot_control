@@ -12,7 +12,6 @@ from monoforce.vis import setup_visualization, animate_trajectory
 dphys_cfg = DPhysConfig()
 dphys_cfg.grid_res = 0.1
 dphys_cfg.d_max = 6.4
-dphys_cfg.d_min = 1.
 dphys_cfg.traj_sim_time = 5.0
 dphys_cfg.dt = 0.01
 device = torch.device('cpu')
@@ -130,7 +129,6 @@ def shoot_multiple():
     import matplotlib.pyplot as plt
 
     # simulation parameters
-    dphys_cfg = DPhysConfig()
     dt = dphys_cfg.dt
     T = dphys_cfg.traj_sim_time
     num_trajs = dphys_cfg.n_sim_trajs
@@ -219,8 +217,8 @@ def shoot_multiple():
 
 
 def main():
-    motion()
-    # shoot_multiple()
+    # motion()
+    shoot_multiple()
 
 
 if __name__ == '__main__':
